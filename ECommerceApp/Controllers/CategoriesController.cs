@@ -47,6 +47,7 @@ namespace ECommerceApp.Controllers
         public IActionResult Create()
         {
             return View();
+
         }
 
         // POST: Category/Create
