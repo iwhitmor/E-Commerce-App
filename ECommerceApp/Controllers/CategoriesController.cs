@@ -10,11 +10,11 @@ using ECommerceApp.Models;
 
 namespace ECommerceApp.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoriesController : Controller
     {
         private readonly ECommerceDbContext _context;
 
-        public CategoryController(ECommerceDbContext context)
+        public CategoriesController(ECommerceDbContext context)
         {
             _context = context;
         }
