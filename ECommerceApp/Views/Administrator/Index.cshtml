@@ -1,3 +1,5 @@
+{
+@model List<Category>
 @{
     ViewData["Title"] = "Admin Page";
 }
@@ -5,4 +7,18 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <ul>
+        @foreach (var category in Model)
+        {
+            <li>
+                @* This is a comment in Razor! *@
+                @* <a href="/Families/Details/@family.Id"> *@
+                @* But we should let ASP.NET figure out the route: *@
+                <a asp-controller="Categories" asp-action="Details" asp-route-id="@category.Id">
+                    @category.Name
+                </a>
+            </li>
+        }
+    </ul>
 </div>
