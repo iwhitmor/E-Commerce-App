@@ -1,4 +1,5 @@
 using System;
+using ECommerceApp.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceApp.Data
@@ -7,7 +8,8 @@ namespace ECommerceApp.Data
     {
         public ECommerceDbContext(DbContextOptions options) : base(options)
         {
-
         }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }
