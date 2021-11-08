@@ -7,6 +7,7 @@ namespace ECommerceApp.Data
     {
         public ECommerceDbContext(DbContextOptions options) : base(options)
         {
+
         }
     }
 }
