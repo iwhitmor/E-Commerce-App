@@ -11,6 +11,11 @@ namespace ECommerceApp.Services
     {
         private readonly ECommerceDbContext _context;
 
+        public DatabaseCategoryRepository(ECommerceDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<List<Category>> GetAll()
         {
             return await _context.Categories.ToListAsync();

@@ -1,6 +1,17 @@
-
+@model List<Category>
 @{
     ViewData["Title"] = "Administrator Dashboard";
 }
 
 <h1>Admin Dashboard</h1>
+
+<ul>
+    @foreach (var category in Model)
+            {
+                <li>
+                    <a asp-controller="Categories" asp-action="Details" asp-route-id="category.Id">
+                        @category.Name
+                    </a>
+                </li>
+            }
+</ul>

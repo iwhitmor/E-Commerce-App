@@ -5,10 +5,8 @@ using ECommerceApp.Models;
 
 namespace ECommerceApp.Services
 {
-    public class ICategoryRepository
+    public interface ICategoryRepository
     {
         Task<List<Category>> GetAll();
-
-        Task<List<Category>> GetNew(int count);
     }
 }
