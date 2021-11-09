@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceApp.Controllers
 {
-    public class AdministratorController : Controller
+    public class AdminController : Controller
     {
        public IActionResult Index()
         {
