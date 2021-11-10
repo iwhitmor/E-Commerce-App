@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ECommerceApp.Models;
 using ECommerceApp.Models.Identity;
 using ECommerceApp.Services.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceApp.Controllers
@@ -19,6 +20,7 @@ namespace ECommerceApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
             return View();
