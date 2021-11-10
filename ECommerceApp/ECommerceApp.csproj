@@ -14,12 +14,14 @@
     <None Remove="Services\" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <None Remove="Models\Identity\" />
+    <None Remove="Services\Identity\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Services\" />
     <Folder Include="Models\Identity\" />
+    <Folder Include="Services\Identity\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
