@@ -18,10 +18,12 @@ namespace ECommerceApp.Services.Identity
 
     public class IdentityUserService : IUserService
     {
+        private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
 
-        public IdentityUserService(UserManager<IdentityUser> userManager, ILogger<IdentityUserService> logger)
+        public IdentityUserService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<IdentityUserService> logger)
         {
+            this.signInManager = signInManager;
             this.userManager = userManager;
             Logger = logger;
         }
@@ -34,6 +36,7 @@ namespace ECommerceApp.Services.Identity
 
             if (await userManager.CheckPasswordAsync(user, data.Password))
             {
+                await signInManager.SignInAsync(user, false);
                 return await CreateUserDto(user);
             }
 
@@ -60,6 +63,7 @@ namespace ECommerceApp.Services.Identity
 
             if (result.Succeeded)
             {
+                await signInManager.SignInAsync(user, false);
                 return await CreateUserDto(user);
             }
 
