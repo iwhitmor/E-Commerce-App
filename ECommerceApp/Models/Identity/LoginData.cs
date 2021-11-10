@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceApp.Models
+namespace ECommerceApp.Models.Identity
 {
     public class LoginData
     {
@@ -9,6 +9,7 @@ namespace ECommerceApp.Models
         public string Username { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

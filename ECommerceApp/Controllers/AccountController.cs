@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceApp.Models;
 using ECommerceApp.Models.Identity;
 using ECommerceApp.Services.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +46,26 @@ namespace ECommerceApp.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginData data)
+        {
+            var user = await userService.Authenticate(data);
+            if (user != null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            ModelState.AddModelError(nameof(LoginData.Password), "Email or Password was incorrect.");
+
+            return View(data);
         }
     }
 }
