@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApp.Data;
 using ECommerceApp.Services;
+using ECommerceApp.Services.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +41,7 @@ namespace ECommerceApp
                 options.User.RequireUniqueEmail = true;
             })
                 .AddEntityFrameworkStores<ECommerceDbContext>();
+            services.AddScoped<IUserService, IdentityUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
