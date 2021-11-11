@@ -32,7 +32,7 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
-            <form asp-action="UploadProductImg" method="post" enctype="multipart/form-data">
+            <form asp-action="UploadProductImg" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <input type="file" name="productImage" />
                 <input type="submit" value="Upload" class="btn btn-secondary">

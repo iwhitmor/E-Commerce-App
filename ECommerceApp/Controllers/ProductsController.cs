@@ -169,9 +169,19 @@ namespace ECommerceApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadProductImg(IFormFile productImage)
+        public async Task<IActionResult> UploadProductImg(int id, IFormFile productImage)
         {
+            var product = await _context.Products
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
             string url = await fileUploadService.Upload(productImage);
+            product.ImageUrl = url;
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     }
