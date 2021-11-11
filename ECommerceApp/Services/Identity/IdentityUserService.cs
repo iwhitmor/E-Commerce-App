@@ -63,6 +63,12 @@ namespace ECommerceApp.Services.Identity
 
             if (result.Succeeded)
             {
+                if (data.MakeMeAnAdmin)
+                    await userManager.AddToRoleAsync(user, "Administrator");
+
+                if (data.MakeMeAnEditor)
+                    await userManager.AddToRoleAsync(user, "Editor");
+
                 await signInManager.SignInAsync(user, false);
                 return await CreateUserDto(user);
             }
