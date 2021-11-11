@@ -6,6 +6,6 @@ namespace ECommerceApp.Services
 {
     public interface IFileUploadService
     {
-        Task<string> Upload(IFormFile file);
+        Task<string> Upload(IFormFile productImage);
     }
 }

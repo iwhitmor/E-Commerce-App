@@ -9,6 +9,8 @@ using ECommerceApp.Data;
 using ECommerceApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using ECommerceApp.Services.Identity;
+using ECommerceApp.Services;
 
 namespace ECommerceApp.Controllers
 {
@@ -16,10 +18,12 @@ namespace ECommerceApp.Controllers
     public class ProductsController : Controller
     {
         private readonly ECommerceDbContext _context;
+        private readonly IFileUploadService fileUploadService;
 
-        public ProductsController(ECommerceDbContext context)
+        public ProductsController(ECommerceDbContext context, IFileUploadService fileUploadService)
         {
             _context = context;
+            this.fileUploadService = fileUploadService;
         }
 
         // GET: Products
@@ -74,6 +78,7 @@ namespace ECommerceApp.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Administrator, Editor")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -95,7 +100,7 @@ namespace ECommerceApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Editor")]
+        [Authorize(Roles = "Administrator, Editor")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,CategoryId")] Product product)
         {
             if (id != product.Id)
@@ -166,6 +171,7 @@ namespace ECommerceApp.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadProductImg(IFormFile productImage)
         {
+            string url = await fileUploadService.Upload(productImage);
             return RedirectToAction(nameof(Index));
         }
     }

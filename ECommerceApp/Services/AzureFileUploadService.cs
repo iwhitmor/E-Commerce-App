@@ -26,7 +26,7 @@ namespace ECommerceApp.Services
 
         public async Task<string> Upload(IFormFile productImage)
         {
-            var container = cloudBlobClient.GetContainerReference("profiles");
+            var container = cloudBlobClient.GetContainerReference("ecommerce");
             await container.CreateIfNotExistsAsync();
             await container.SetPermissionsAsync(new BlobContainerPermissions
             {

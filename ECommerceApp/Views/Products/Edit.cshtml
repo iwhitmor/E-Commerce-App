@@ -28,16 +28,16 @@
                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
-            <form asp-action="UploadProductImg" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <input type="file" name="productImage" />
-                <button type="submit">Upload</button>
-            </div>
-            </form>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+            <form asp-action="UploadProductImg" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" name="productImage" />
+                <input type="submit" value="Upload" class="btn btn-secondary">
+            </div>
+            </form>
     </div>
 </div>
 
