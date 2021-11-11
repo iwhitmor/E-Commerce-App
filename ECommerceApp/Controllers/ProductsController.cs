@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ECommerceApp.Data;
 using ECommerceApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace ECommerceApp.Controllers
 {
@@ -160,6 +161,12 @@ namespace ECommerceApp.Controllers
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadProductImg(IFormFile productImage)
+        {
+            return RedirectToAction(nameof(Index));
         }
     }
 }
