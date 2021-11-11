@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ECommerceApp.Data;
 using ECommerceApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ECommerceApp.Controllers
 {
+    [Authorize(Roles = "Administrator, Editor")]
     public class ProductsController : Controller
     {
         private readonly ECommerceDbContext _context;
@@ -57,6 +59,7 @@ namespace ECommerceApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,CategoryId")] Product product)
         {
             if (ModelState.IsValid)
@@ -91,6 +94,7 @@ namespace ECommerceApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Editor")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,CategoryId")] Product product)
         {
             if (id != product.Id)
@@ -144,6 +148,7 @@ namespace ECommerceApp.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Products.FindAsync(id);
