@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using ECommerceApp.Data;
 using ECommerceApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using ECommerceApp.Services.Identity;
+using ECommerceApp.Services;
 
 namespace ECommerceApp.Controllers
 {
@@ -15,10 +18,12 @@ namespace ECommerceApp.Controllers
     public class ProductsController : Controller
     {
         private readonly ECommerceDbContext _context;
+        private readonly IFileUploadService fileUploadService;
 
-        public ProductsController(ECommerceDbContext context)
+        public ProductsController(ECommerceDbContext context, IFileUploadService fileUploadService)
         {
             _context = context;
+            this.fileUploadService = fileUploadService;
         }
 
         // GET: Products
@@ -73,6 +78,7 @@ namespace ECommerceApp.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Administrator, Editor")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -94,7 +100,7 @@ namespace ECommerceApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Editor")]
+        [Authorize(Roles = "Administrator, Editor")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,CategoryId")] Product product)
         {
             if (id != product.Id)
@@ -160,6 +166,23 @@ namespace ECommerceApp.Controllers
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadProductImg(int id, IFormFile productImage)
+        {
+            var product = await _context.Products
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            string url = await fileUploadService.Upload(productImage);
+            product.ImageUrl = url;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

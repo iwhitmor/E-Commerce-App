@@ -5,3 +5,13 @@
 <h1>My Account</h1>
 
 @User.Identity.Name
+
+@if (User.IsInRole("Administrator"))
+{
+                <p>You are an Admin</p>
+}
+
+@if (User.IsInRole("Editor"))
+            {
+                <p>You are an Editor</p>
+            }
