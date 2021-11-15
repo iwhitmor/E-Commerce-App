@@ -57,6 +57,13 @@ namespace ECommerceApp.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await userService.Logout();
+            return Redirect("/");
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Login(LoginData data)
         {
             var user = await userService.Authenticate(data);
