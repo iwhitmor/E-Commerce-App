@@ -6,9 +6,9 @@ namespace ECommerceApp.Models
     public class AdminIndexViewModel
     {
 
-        public List<Category> Category { get; set; }
+        public List<Category> Categories { get; set; }
 
-        public List<Product> Product { get; set; }
+        public List<Product> Products { get; set; }
 
     }
 }
