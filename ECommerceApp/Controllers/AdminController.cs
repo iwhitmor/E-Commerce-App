@@ -22,6 +22,8 @@ namespace ECommerceApp.Controllers
         {
             List<Category> categories = await categoryRepository.GetAll();
             return View(categories);
+
+            List<Product> products = await p
         }
     }
 }
