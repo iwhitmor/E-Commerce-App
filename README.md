@@ -40,6 +40,8 @@ Microsoft Visual Studio Community 2017 (Version 15.5.7)
 
 ### Overall Project Schema
 
+![schehma](/images/ecommerceschema.pdf)
+
 ---
 
 ## Change Log
