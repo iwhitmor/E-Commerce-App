@@ -36,6 +36,8 @@ namespace ECommerceApp
 
             services.AddScoped<ICategoryRepository, DatabaseCategoryRepository>();
 
+            services.AddScoped<IProductRepository, DatabaseProductRepository>();
+
             services.AddScoped<IFileUploadService, AzureFileUploadService>();
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>

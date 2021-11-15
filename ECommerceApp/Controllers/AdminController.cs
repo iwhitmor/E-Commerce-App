@@ -12,18 +12,26 @@ namespace ECommerceApp.Controllers
     public class AdminController : Controller
     {
         private readonly ICategoryRepository categoryRepository;
-       
-        public AdminController(ICategoryRepository categoryRepository)
+        private readonly IProductRepository productRepository;
+
+        public AdminController(ICategoryRepository categoryRepository, IProductRepository productRepository)
         {
             this.categoryRepository = categoryRepository;
+            this.productRepository = productRepository;
         }
 
         public async Task<IActionResult> Index()
         {
             List<Category> categories = await categoryRepository.GetAll();
-            return View(categories);
+            List<Product> products = await productRepository.GetAll();
 
-            List<Product> products = await p
+            var model = new AdminIndexViewModel
+            {
+                Categories = categories,
+                Products = products,
+            };
+
+            return View(model);
         }
     }
 }
