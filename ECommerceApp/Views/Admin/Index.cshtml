@@ -1,4 +1,4 @@
-@model List<Category>
+@model AdminIndexViewModel
 @{
     ViewData["Title"] = "Admin Dashboard";
 }
@@ -9,7 +9,7 @@
      <div class="card-header">
          Categories
      </div>
-     @foreach (var category in Model)
+     @foreach (var category in Model.Categories)
      {
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
@@ -19,4 +19,20 @@
                         </li>
                     </ul>
      }
+</div>
+
+<div class="card" style="width: 15rem;">
+    <div class="card-header">
+        Products
+    </div>
+    @foreach (var product in Model.Products)
+    {
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
+                        @product.Name
+                    </a>
+                </li>
+            </ul>
+    }
 </div>
