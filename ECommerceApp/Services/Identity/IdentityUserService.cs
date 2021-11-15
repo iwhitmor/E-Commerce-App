@@ -14,6 +14,7 @@ namespace ECommerceApp.Services.Identity
         Task<UserDto> Register(RegisterData data, ModelStateDictionary modelState);
         Task<UserDto> Authenticate(LoginData data);
         Task<UserDto> GetUser(ClaimsPrincipal user);
+        Task Logout();
     }
 
     public class IdentityUserService : IUserService
@@ -50,6 +51,11 @@ namespace ECommerceApp.Services.Identity
             if (user == null) return null;
 
             return await CreateUserDto(user);
+        }
+
+        public async Task Logout()
+        {
+            await signInManager.SignOutAsync();
         }
 
         public async Task<UserDto> Register(RegisterData data, ModelStateDictionary modelState)
