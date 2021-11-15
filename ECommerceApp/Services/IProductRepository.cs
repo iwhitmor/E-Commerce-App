@@ -8,5 +8,7 @@ namespace ECommerceApp.Services
     public interface IProductRepository
     {
         Task<List<Product>> GetAll();
+
+        Task<Product> GetOne();
     }
 }
