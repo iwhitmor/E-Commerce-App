@@ -1,0 +1,39 @@
+@page
+@model ECommerceApp.Pages.IndexModel
+@{
+    Layout = "_Layout";
+}
+
+<h1>Welcome to Golf Land!</h1>
+
+<div class="card" style="width: 15rem;">
+    <div class="card-header">
+        Categories
+    </div>
+    @foreach (var category in Model.Categories)
+    {
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <a asp-page="Category" asp-route-id="@category.Id">
+                    @category.Name
+                </a>
+            </li>
+        </ul>
+    }
+</div>
+
+<div class="card" style="width: 15rem;">
+    <div class="card-header">
+        Products
+    </div>
+    @foreach (var product in Model.Products)
+    {
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <a asp-page="Product" asp-route-id="@product.Id">
+                    @product.Name
+                </a>
+            </li>
+        </ul>
+    }
+</div>

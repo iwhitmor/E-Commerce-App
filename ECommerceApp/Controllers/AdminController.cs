@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
 using ECommerceApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ECommerceApp.Controllers
 {
+    [Authorize(Roles = "Administrator, Editor")]
     public class AdminController : Controller
     {
         private readonly ICategoryRepository categoryRepository;

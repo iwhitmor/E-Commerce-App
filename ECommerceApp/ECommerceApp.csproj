@@ -18,6 +18,10 @@
     <None Remove="Services\Identity\" />
     <None Remove="Views\Account\" />
     <None Remove="WindowsAzure.Storage" />
+    <None Remove="Pages\" />
+    <None Remove="Pages\Shared\" />
+    <None Remove="Components\" />
+    <None Remove="Pages\Components\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -26,6 +30,10 @@
     <Folder Include="Models\Identity\" />
     <Folder Include="Services\Identity\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Pages\Shared\" />
+    <Folder Include="Components\" />
+    <Folder Include="Pages\Components\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />

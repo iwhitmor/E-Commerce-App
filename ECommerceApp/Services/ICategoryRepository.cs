@@ -8,5 +8,7 @@ namespace ECommerceApp.Services
     public interface ICategoryRepository
     {
         Task<List<Category>> GetAll();
+
+        Task<Category> GetById(int? id);
     }
 }

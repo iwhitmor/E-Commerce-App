@@ -20,5 +20,12 @@ namespace ECommerceApp.Services
         {
             return await _context.Products.ToListAsync();
         }
+
+        public async Task<Product> GetById(int? id)
+        {
+            return await _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(m => m.Id == id);
+        }
     }
 }
