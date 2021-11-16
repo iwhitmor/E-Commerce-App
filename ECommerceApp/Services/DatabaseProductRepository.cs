@@ -23,7 +23,9 @@ namespace ECommerceApp.Services
 
         public async Task<Product> GetById(int? id)
         {
-            return await _context.Products.FindAsync(id);
+            return await _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(m => m.Id == id);
         }
     }
 }
