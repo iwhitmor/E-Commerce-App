@@ -15,10 +15,8 @@ namespace ECommerceApp.Pages
 
         public CategoryModel(ICategoryRepository categoryRepository)
         {
-            CategoryRepository = categoryRepository;
+            this.categoryRepository = categoryRepository;
         }
-
-        public ICategoryRepository CategoryRepository { get; }
 
         public Category Category { get; set; }
 

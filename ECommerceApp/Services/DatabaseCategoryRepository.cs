@@ -24,6 +24,7 @@ namespace ECommerceApp.Services
         public async Task<Category> GetById(int? id)
         {
             return await _context.Categories
+                .Include(c => c.Products)
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
     }
