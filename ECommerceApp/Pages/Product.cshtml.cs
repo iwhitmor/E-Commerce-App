@@ -27,14 +27,14 @@ namespace ECommerceApp.Pages
                 return NotFound();
             }
 
-            Product = await .FirstOrDefaultAsync(p => p.Id == id);
+            Product = await productRepository.GetById(id);
 
             if (Product == null)
             {
                 return NotFound();
             }
 
-            return Product;
+            return Page();
         }
     }
 }

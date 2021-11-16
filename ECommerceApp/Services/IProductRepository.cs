@@ -9,6 +9,6 @@ namespace ECommerceApp.Services
     {
         Task<List<Product>> GetAll();
 
-        Task<Product> GetById(int id);
+        Task<Product> GetById(int? id);
     }
 }
