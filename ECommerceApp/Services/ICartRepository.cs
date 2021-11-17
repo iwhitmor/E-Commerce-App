@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
 
@@ -7,6 +8,6 @@ namespace ECommerceApp.Services
 {
     public interface ICartRepository
     {
-        Task AddToCart(string userId, int productId);
+        Task AddToCart(int productId);
     }
 }

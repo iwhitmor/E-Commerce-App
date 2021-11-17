@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
 using ECommerceApp.Models.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
@@ -15,18 +16,27 @@ namespace ECommerceApp.Services.Identity
         Task<UserDto> Authenticate(LoginData data);
         Task<UserDto> GetUser(ClaimsPrincipal user);
         Task Logout();
+        string GetUserId();
     }
 
     public class IdentityUserService : IUserService
     {
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public IdentityUserService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<IdentityUserService> logger)
+        public IdentityUserService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<IdentityUserService> logger, IHttpContextAccessor httpContextAccessor)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             Logger = logger;
+            this.httpContextAccessor = httpContextAccessor;
+        }
+
+        public string GetUserId()
+        {
+            var principal = httpContextAccessor.HttpContext.User;
+            return userManager.GetUserId(principal);
         }
 
         public ILogger<IdentityUserService> Logger { get; }
