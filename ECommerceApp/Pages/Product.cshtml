@@ -7,6 +7,14 @@
 <div>
     <h4>Product</h4>
     <hr />
+
+    <div>
+        @if (!string.IsNullOrEmpty(Model.Product.ImageUrl))
+        {
+            <img src="@Model.Product.ImageUrl" style="height:250px;width:250px;" />
+        }
+    </div>
+
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => Model.Product.Name)
