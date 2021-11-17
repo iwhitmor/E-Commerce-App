@@ -19,17 +19,26 @@ namespace ECommerceApp.Services
             this.userService = userService;
         }
 
-
         public async Task AddToCart(int productId)
         {
+
+            var userId = userService.GetUserId();
             var cartItem = new CartItem
             {
                 UserId = userService.GetUserId(),
                 ProductId = productId,
             };
 
-            _context.CartItems.Add(cartItem);
-            await _context.SaveChangesAsync();
+            if (cartItem == null)
+            {
+                _context.CartItems.Add(cartItem);
+                await _context.SaveChangesAsync();
+            }
+
+            else
+            {
+               
+            }
         }
     }
 }
