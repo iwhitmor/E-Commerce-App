@@ -12,10 +12,12 @@ namespace ECommerceApp.Pages
     public class ProductModel : PageModel
     {
         private readonly IProductRepository productRepository;
+        private readonly ICartRepository cartRepository;
 
-        public ProductModel(IProductRepository productRepository)
+        public ProductModel(IProductRepository productRepository, ICartRepository cartRepository)
         {
             this.productRepository = productRepository;
+            this.cartRepository = cartRepository;
         }
 
         public Product Product { get; set; }
@@ -30,6 +32,25 @@ namespace ECommerceApp.Pages
             Product = await productRepository.GetById(id);
 
             if (Product == null)
+            {
+                return NotFound();
+            }
+
+            return Page();
+        }
+
+        public CartItem CartItem { get; set; }
+
+        public async Task<IActionResult> OnPost(string userId, int productId)
+        {
+            if (userId == null)
+            {
+                return NotFound();
+            }
+
+            CartItem = await cartRepository.AddToCart(userId, productId);
+
+            if (CartItem == null)
             {
                 return NotFound();
             }
