@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
@@ -9,10 +10,12 @@ namespace ECommerceApp.Services
     public class SendGridEmailService : IEmailService
     {
         private IConfiguration Configuration { get; }
+        private readonly ILogger<SendGridEmailService> logger;
 
-        public SendGridEmailService(IConfiguration configuration)
+        public SendGridEmailService(IConfiguration configuration, ILogger<SendGridEmailService> logger)
         {
             Configuration = configuration;
+            this.logger = logger;
         }
 
         public async Task SendEmail(string toEmail, string subject, string plainTextContent, string htmlContent)
@@ -32,6 +35,11 @@ namespace ECommerceApp.Services
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
             var response = await client.SendEmailAsync(msg);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                logger.LogWarning("Could not send email!");
+            }
         }
     }
 }
