@@ -29,11 +29,8 @@ namespace ECommerceApp.Services
             var client = new SendGridClient(apiKey);
 
             var from = new EmailAddress(fromEmail);
-            //var subject = "Sending with SendGrid is Fun";
 
             var to = new EmailAddress(toEmail);
-            //var plainTextContent = "and easy to do anywhere, even with C#";
-            //var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
 
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
