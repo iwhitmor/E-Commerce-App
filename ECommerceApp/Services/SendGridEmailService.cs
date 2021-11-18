@@ -23,6 +23,9 @@ namespace ECommerceApp.Services
             var apiKey = Configuration["SendGrid:ApiKey"]
                 ?? throw new InvalidOperationException("SendGrid:ApiKey not found");
 
+            var fromEmail = Configuration["Email:From"]
+                ?? throw new InvalidOperationException("Email:From not found");
+
             var client = new SendGridClient(apiKey);
 
             var from = new EmailAddress("ianwhitmor+golfland@gmail.com");
