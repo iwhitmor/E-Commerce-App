@@ -42,16 +42,16 @@ namespace ECommerceApp.Pages
 
         public CartItem CartItem { get; set; }
 
-        //public async Task<IActionResult> OnPost(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> OnPost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    await cartRepository.AddToCart(id.Value);
+            await cartRepository.AddToCart(id.Value, 1);
 
-        //    return RedirectToAction(nameof(Index));
-        //}
+            return RedirectToAction(nameof(Index));
+        }
     }
-    }
+}

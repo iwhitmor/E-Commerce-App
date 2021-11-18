@@ -20,41 +20,36 @@ namespace ECommerceApp.Services
             this.userService = userService;
         }
 
-        public Task AddToCart(int productId, int qty)
+        public async Task AddToCart(int productId, int qty)
         {
-            throw new NotImplementedException();
+
+            var userId = userService.GetUserId();
+
+            var cartItem = await _context.CartItems
+                .FirstOrDefaultAsync(ci =>
+                    ci.UserId == userId &&
+                    ci.ProductId == productId);
+
+
+            if (cartItem == null)
+            {
+                cartItem = new CartItem
+                {
+                    UserId = userService.GetUserId(),
+                    ProductId = productId,
+                    Quantity = qty,
+                };
+
+                _context.CartItems.Add(cartItem);
+            }
+            else
+            {
+                cartItem.Quantity += qty;
+                _context.Entry(cartItem).State = EntityState.Modified;
+            }
+
+            await _context.SaveChangesAsync();
+
         }
-
-        //public async Task AddToCart(int productId, int qty)
-        //{
-
-        //    var userId = userService.GetUserId();
-
-        //    var cartItem = await _context.CartItems
-        //        .FirstOrDefaultAsync(ci =>
-        //            ci.UserId == userId &&
-        //            ci.ProductId == productId);
-
-
-        //    if (cartItem == null)
-        //    {
-        //        cartItem = new CartItem
-        //        {
-        //            UserId = userService.GetUserId(),
-        //            ProductId = productId,
-        //            Quantity = qty,
-        //        };
-
-        //        _context.CartItems.Add(cartItem);
-        //    }
-        //    else
-        //    {
-        //        cartItem.Quantity += qty;
-        //        _context.Entry(cartItem).State = Modified;
-        //    }
-
-        // await _context.SaveChangesAsync();
-
     }
-    }
-//}
+}
