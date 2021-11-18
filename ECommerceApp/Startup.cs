@@ -44,6 +44,8 @@ namespace ECommerceApp
 
             services.AddScoped<ICartRepository, DatabaseCartRepository>();
 
+            services.AddSingleton<IEmailService, SendGridEmailService>();
+
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;

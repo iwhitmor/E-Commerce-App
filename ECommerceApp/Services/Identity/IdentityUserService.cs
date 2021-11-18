@@ -24,13 +24,15 @@ namespace ECommerceApp.Services.Identity
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
         private readonly IHttpContextAccessor httpContextAccessor;
+        readonly IEmailService emailService;
 
-        public IdentityUserService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<IdentityUserService> logger, IHttpContextAccessor httpContextAccessor)
+        public IdentityUserService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<IdentityUserService> logger, IHttpContextAccessor httpContextAccessor, IEmailService emailService)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             Logger = logger;
             this.httpContextAccessor = httpContextAccessor;
+            this.emailService = emailService;
         }
 
         public string GetUserId()
@@ -84,6 +86,12 @@ namespace ECommerceApp.Services.Identity
 
                 if (data.MakeMeAnEditor)
                     await userManager.AddToRoleAsync(user, "Editor");
+
+                await emailService.SendEmail(
+                    data.Email,
+                    "Welcome to Golf Land",
+                    "Welcome!",
+                    "<h1>Welcome</h1>");
 
                 await signInManager.SignInAsync(user, false);
                 return await CreateUserDto(user);
