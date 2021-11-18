@@ -42,6 +42,8 @@ namespace ECommerceApp
 
             services.AddScoped<IFileUploadService, AzureFileUploadService>();
 
+            services.AddScoped<ICartRepository, DatabaseCartRepository>();
+
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;

@@ -7,6 +7,14 @@
 <div>
     <h4>Product</h4>
     <hr />
+
+    <div>
+        @if (!string.IsNullOrEmpty(Model.Product.ImageUrl))
+        {
+            <img src="@Model.Product.ImageUrl" style="height:250px;width:250px;" />
+        }
+    </div>
+
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => Model.Product.Name)
@@ -27,7 +35,7 @@
             @Html.DisplayFor(model => Model.Product.Category.Name)
         </dd>
     </dl>
-    <form asp-area="" asp-controller="Account" asp-action="Logout">
+    <form asp-page="Product" asp-route-id="@Model.Product.Id">
         <button type="submit" class="btn btn-secondary">Add to Cart</button>
     </form>
 </div>

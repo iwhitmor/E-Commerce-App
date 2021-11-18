@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
 using ECommerceApp.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -41,21 +42,16 @@ namespace ECommerceApp.Pages
 
         public CartItem CartItem { get; set; }
 
-        public async Task<IActionResult> OnPost(string userId, int productId)
+        public async Task<IActionResult> OnPost(int? id)
         {
-            if (userId == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            CartItem = await cartRepository.AddToCart(userId, productId);
+            await cartRepository.AddToCart(id.Value);
 
-            if (CartItem == null)
-            {
-                return NotFound();
-            }
-
-            return Page();
+            return RedirectToAction(nameof(Index));
         }
     }
-}
+    }
