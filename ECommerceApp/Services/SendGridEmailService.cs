@@ -28,7 +28,7 @@ namespace ECommerceApp.Services
 
             var client = new SendGridClient(apiKey);
 
-            var from = new EmailAddress("ianwhitmor+golfland@gmail.com");
+            var from = new EmailAddress(fromEmail);
             //var subject = "Sending with SendGrid is Fun";
 
             var to = new EmailAddress(toEmail);
