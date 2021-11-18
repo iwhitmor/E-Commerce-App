@@ -14,11 +14,15 @@ namespace ECommerceApp.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<CartItem>()
+                .HasKey(ci => new { ci.UserId, ci.ProductId });
 
             SeedRole(modelBuilder, "Administrator");
             SeedRole(modelBuilder, "Editor");
