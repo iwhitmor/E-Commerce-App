@@ -41,7 +41,12 @@ namespace ECommerceApp.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                logger.LogWarning("Could not send email!");
+                string responseBody = await response.Body.ReadAsStringAsync();
+
+                logger.LogWarning(
+                    "Could not send email! {Status} {Body}",
+                    response.StatusCode,
+                    responseBody);
             }
         }
     }
