@@ -91,7 +91,7 @@ namespace ECommerceApp.Services.Identity
                     data.Email,
                     "Welcome to Golf Land",
                     "Welcome!",
-                    "<h1>Welcome</h1>");
+                    "<div>Hello!! You are now a registered user with Golf Land. Head back to our site to start shopping for the latest and greatest golf equipment!</div>");
 
                 await signInManager.SignInAsync(user, false);
                 return await CreateUserDto(user);
