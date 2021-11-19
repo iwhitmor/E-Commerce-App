@@ -49,7 +49,10 @@ namespace ECommerceApp
                 options.User.RequireUniqueEmail = true;
             })
                 .AddEntityFrameworkStores<ECommerceDbContext>();
+
             services.AddScoped<IUserService, IdentityUserService>();
+
+            services.AddSingleton<IEmailService, SendGridEmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

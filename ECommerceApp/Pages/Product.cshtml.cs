@@ -49,9 +49,9 @@ namespace ECommerceApp.Pages
                 return NotFound();
             }
 
-            await cartRepository.AddToCart(id.Value);
+            await cartRepository.AddToCart(id.Value, 1);
 
             return RedirectToAction(nameof(Index));
         }
     }
-    }
+}

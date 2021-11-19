@@ -8,6 +8,6 @@ namespace ECommerceApp.Services
 {
     public interface ICartRepository
     {
-        Task AddToCart(int productId);
+        Task AddToCart(int productId, int qty);
     }
 }
