@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceApp.Models;
 using ECommerceApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,9 +18,13 @@ namespace ECommerceApp.Pages
             this.cartRepository = cartRepository;
         }
 
-        public async Task<List> OnGetAsync()
+        public List<CartItem> CartItems { get; set; }
+
+        public async Task<IActionResult> OnGetAsync()
         {
-            shoppingCart = await cartRepository.
+            CartItems = await cartRepository.ShoppingCart();
+
+            return Page();
         }
     }
 }

@@ -40,8 +40,6 @@ namespace ECommerceApp.Pages
             return Page();
         }
 
-        public CartItem CartItem { get; set; }
-
         public async Task<IActionResult> OnPost(int? id)
         {
             if (id == null)
