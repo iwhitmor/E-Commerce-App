@@ -38,9 +38,12 @@
                                     <button type="submit" class="nav-link text-dark btn btn-link border-0">Log Out</button>
                                 </form>
                             </li>
-                            <li class="nav-item">
-                                <vc:cart-count />
-                            </li>
+                            <button type="button" class="btn btn-secondary position-relative">
+                                    My Cart
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                 <vc:cart-count />  
+                                </span>
+                            </button>
                         }
                         else
                         {

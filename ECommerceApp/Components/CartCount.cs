@@ -16,8 +16,6 @@ namespace ECommerceApp.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            //Todo
-            //Go to database and get some of cart item quantities
             int cartQuantity = await cartRepository.GetCartQuantity();
             return View(cartQuantity);
         }
