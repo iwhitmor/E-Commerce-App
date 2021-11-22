@@ -66,5 +66,17 @@ namespace ECommerceApp.Services
 
             return cartQuantity;
         }
+
+        public async Task<List<CartItem>> ShoppingCart()
+        {
+            var userId = userService.GetUserId();
+
+            var shoppingCart = await _context.CartItems
+                .Where(sc =>
+                    sc.UserId == userId)
+                .ToListAsync();
+
+            return shoppingCart;
+        }
     }
 }
