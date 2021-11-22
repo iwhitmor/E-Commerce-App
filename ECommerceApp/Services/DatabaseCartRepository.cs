@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ECommerceApp.Data;
@@ -50,6 +51,20 @@ namespace ECommerceApp.Services
 
             await _context.SaveChangesAsync();
 
+        }
+
+        public async Task<int> GetCartQuantity()
+        {
+            var userId = userService.GetUserId();
+
+            var cartQuantity = await
+                _context.CartItems
+                    .Where(cq =>
+                       cq.UserId == userId)
+                    .SumAsync(cq =>
+                       cq.Quantity);
+
+            return cartQuantity;
         }
     }
 }

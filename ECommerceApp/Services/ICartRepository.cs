@@ -9,5 +9,7 @@ namespace ECommerceApp.Services
     public interface ICartRepository
     {
         Task AddToCart(int productId, int qty);
+
+        Task<int> GetCartQuantity();
     }
 }
