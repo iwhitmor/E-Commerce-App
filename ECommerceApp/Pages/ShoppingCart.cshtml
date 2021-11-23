@@ -39,7 +39,17 @@
                 @item.Product.Category.Name
             </td>
             <td>
-                @item.Quantity
+                <div class="form-group">
+                    <label for="quantity">Qty</label>
+                    <select class="form-control">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
             </td>
             <td>
                 @if (!string.IsNullOrEmpty(@item.Product.ImageUrl))
