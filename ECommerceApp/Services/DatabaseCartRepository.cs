@@ -74,6 +74,10 @@ namespace ECommerceApp.Services
             var shoppingCart = await _context.CartItems
                 .Where(sc =>
                     sc.UserId == userId)
+                .Include(sc =>
+                    sc.Product)
+                .ThenInclude(sc =>
+                    sc.Category)
                 .ToListAsync();
 
             return shoppingCart;

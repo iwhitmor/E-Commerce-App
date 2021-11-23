@@ -3,9 +3,45 @@
 @{
     ViewData["Title"] = "ShoppingCart";
 }
+    <h4>My Shopping Cart</h4>
 
-<div>
-    <h4>Shopping Cart</h4>
-    <hr />
-@Html.DisplayFor(model => Model.CartItems)
-</div>
+<table class="table">
+    <thead>
+       <tr>
+           <th>
+               Name
+           </th>
+           <th>
+               Price
+           </th>
+           <th>
+               Category
+           </th>
+       </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+        <tr>
+
+            <td>
+                @item.Product.Name
+            </td>
+            <td>
+               $@Html.DisplayFor(modelItem => item.Product.Price)
+            </td>
+            <td>
+                @item.Product.Category.Name
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(@item.Product.ImageUrl))
+                {
+                    <img src="@item.Product.ImageUrl" style="height:100px;width:100px;" />
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
