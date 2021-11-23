@@ -1,4 +1,11 @@
 @page
 @model ECommerceApp.Pages.ShoppingCartModel
 @{
+    ViewData["Title"] = "ShoppingCart";
 }
+
+<div>
+    <h4>Shopping Cart</h4>
+    <hr />
+@Html.DisplayFor(model => Model.CartItems)
+</div>
