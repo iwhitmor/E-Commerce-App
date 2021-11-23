@@ -26,5 +26,12 @@ namespace ECommerceApp.Pages
 
             return Page();
         }
+
+        public async Task<IActionResult> OnPost(int productId, int qty)
+        {
+            await cartRepository.UpdatedCartProduct(productId, qty);
+
+            return Page();
+        }
     }
 }
