@@ -17,6 +17,9 @@
            <th>
                Category
            </th>
+           <th>
+               Quantity
+           </th>
        </tr>
     </thead>
 
@@ -34,6 +37,9 @@
             </td>
             <td>
                 @item.Product.Category.Name
+            </td>
+            <td>
+                @item.Quantity
             </td>
             <td>
                 @if (!string.IsNullOrEmpty(@item.Product.ImageUrl))
