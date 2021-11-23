@@ -39,9 +39,9 @@
                 @item.Product.Category.Name
             </td>
             <td>
-                <div class="form-group">
+                <form asp-page="" method="post">
                     <label for="quantity">Qty</label>
-                    <select class="form-control">
+                    <select class="form-control" form-control-sm" type="text" placeholder=".form-control-sm">
                         <option>0</option>
                         <option>1</option>
                         <option>2</option>
@@ -49,7 +49,8 @@
                         <option>4</option>
                         <option>5</option>
                     </select>
-                </div>
+                    <button type="submit" class="btn btn-secondary">Update</button>
+                </form>
             </td>
             <td>
                 @if (!string.IsNullOrEmpty(@item.Product.ImageUrl))
