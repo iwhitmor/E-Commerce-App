@@ -5,20 +5,27 @@
 
 <h1>Admin Dashboard</h1>
 
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+</li>
+
 <div class="card" style="width: 15rem;">
-     <div class="card-header">
-         Manage Categories
-     </div>
-     @foreach (var category in Model.Categories)
-     {
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <a asp-controller="Categories" asp-action="Details" asp-route-id="@category.Id">
-                                @category.Name
-                            </a>
-                        </li>
-                    </ul>
-     }
+    <div class="card-header">
+        Manage Categories
+    </div>
+    @foreach (var category in Model.Categories)
+    {
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <a asp-controller="Categories" asp-action="Details" asp-route-id="@category.Id">
+                    @category.Name
+                </a>
+            </li>
+        </ul>
+    }
 </div>
 
 <div class="card" style="width: 15rem;">
@@ -27,12 +34,12 @@
     </div>
     @foreach (var product in Model.Products)
     {
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
-                        @product.Name
-                    </a>
-                </li>
-            </ul>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
+                    @product.Name
+                </a>
+            </li>
+        </ul>
     }
 </div>

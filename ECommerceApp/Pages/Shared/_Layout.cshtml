@@ -31,6 +31,9 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp- action="Index">Shop Our Store</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp- action="Index">My Account</a>
                             </li>
                             <li class="nav-item">
@@ -39,9 +42,9 @@
                                 </form>
                             </li>
                             <a asp-page="ShoppingCart" class="btn btn-secondary active" role="button">
-                                    My Cart
+                                My Cart
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                 <vc:cart-count />  
+                                    <vc:cart-count />
                                 </span>
                             </a>
                         }
