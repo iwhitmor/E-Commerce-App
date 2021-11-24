@@ -51,5 +51,12 @@ namespace ECommerceApp.Pages
 
             return RedirectToAction(nameof(Index));
         }
+
+        public IList<Product> Products { get; set; }
+
+        public async Task OnGetAsync()
+        { 
+            Products = await productRepository.GetAll();
+        }
     }
 }
