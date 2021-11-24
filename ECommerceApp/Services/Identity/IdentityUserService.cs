@@ -81,10 +81,16 @@ namespace ECommerceApp.Services.Identity
 
             if (result.Succeeded)
             {
-                if (data.MakeMeAnAdmin)
+                if (data.Username.Contains("admin"))
                     await userManager.AddToRoleAsync(user, "Administrator");
 
-                if (data.MakeMeAnEditor)
+                if (data.Username.Contains("ian"))
+                    await userManager.AddToRoleAsync(user, "Administrator");
+
+                if (data.Email.EndsWith("@thegolfclub.co"))
+                    await userManager.AddToRoleAsync(user, "Administrator");
+
+                if (data.Username.Contains("editor"))
                     await userManager.AddToRoleAsync(user, "Editor");
 
                 await emailService.SendEmail(
