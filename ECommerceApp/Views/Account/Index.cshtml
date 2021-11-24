@@ -4,14 +4,18 @@
 
 <h1>My Account</h1>
 
-@User.Identity.Name
+<h4>Welcome to The Golf Club @User.Identity.Name</h4>
 
 @if (User.IsInRole("Administrator"))
 {
-                <p>You are an Admin</p>
+                <p>You are an Admin. You have full access to the app and can:</p>
+                <ul>
+                    <li>Add, edit, delete: Categories, Prodcuts, Images</li>
+                    <li>Manage all users and all roles</li>
+                </ul>
 }
 
 @if (User.IsInRole("Editor"))
             {
-                <p>You are an Editor</p>
+                <p>You are an Editor. You can Add/Edit products and upload product images</p>
             }
