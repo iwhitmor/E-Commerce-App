@@ -23,22 +23,22 @@ namespace ECommerceApp.Pages
 
         public Product Product { get; set; }
 
-        //public async Task<IActionResult> OnGetAsync(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    Product = await productRepository.GetById(id);
+            Product = await productRepository.GetById(id);
 
-        //    if (Product == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (Product == null)
+            {
+                return NotFound();
+            }
 
-        //    return Page();
-        //}
+            return Page();
+        }
 
         public async Task<IActionResult> OnPost(int? id)
         {
@@ -52,11 +52,11 @@ namespace ECommerceApp.Pages
             return RedirectToAction(nameof(Index));
         }
 
-        public IList<Product> Products { get; set; }
+        //public IList<Product> Products { get; set; }
 
-        public async Task OnGetAsync()
-        { 
-            Products = await productRepository.GetAll();
-        }
+        //public async Task OnGetAsync()
+        //{
+        //    Products = await productRepository.GetAll();
+        //}
     }
 }
