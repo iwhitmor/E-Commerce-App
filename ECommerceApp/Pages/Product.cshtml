@@ -1,14 +1,14 @@
-@page "{id}"
+ @page "{id}"
 @model ECommerceApp.Pages.ProductModel
 @{
-    ViewData["Title"] = "Product";
+
 }
 
 <div>
-    <h4>Product</h4>
+    <h4>Products</h4>
     <hr />
 
-    <div>
+    @*<div>
         @if (!string.IsNullOrEmpty(Model.Product.ImageUrl))
         {
             <img src="@Model.Product.ImageUrl" style="height:250px;width:250px;" />
@@ -26,7 +26,7 @@
             @Html.DisplayNameFor(model => Model.Product.Price)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => Model.Product.Price)
+            $@Html.DisplayFor(model => Model.Product.Price)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => Model.Product.Category)
@@ -37,5 +37,23 @@
     </dl>
     <form asp-page="Product" asp-route-id="@Model.Product.Id">
         <button type="submit" class="btn btn-secondary">Add to Cart</button>
-    </form>
+    </form>*@
 </div>
+
+@foreach (var product in Model.Products)
+{
+
+<div class="card" style="width: 18rem;">
+    @if (!string.IsNullOrEmpty(Model.Product.ImageUrl))
+    {
+        <img src="@Model.Product.ImageUrl" style="height:250px;width:250px;" />
+    }
+    <div class="card-body">
+        <h5 class="card-title">@Html.DisplayFor(model => Model.Product.Name)</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <form asp-page="Product" asp-route-id="@Model.Product.Id">
+            <button type="submit" class="btn btn-secondary">Add to Cart</button>
+        </form>
+    </div>
+</div>
+}

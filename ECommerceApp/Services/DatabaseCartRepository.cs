@@ -66,5 +66,43 @@ namespace ECommerceApp.Services
 
             return cartQuantity;
         }
+
+        public async Task<List<CartItem>> ShoppingCart()
+        {
+            var userId = userService.GetUserId();
+
+            var shoppingCart = await _context.CartItems
+                .Where(sc =>
+                    sc.UserId == userId)
+                .Include(sc =>
+                    sc.Product)
+                .ThenInclude(sc =>
+                    sc.Category)
+                .ToListAsync();
+
+            return shoppingCart;
+        }
+
+        public async Task UpdatedCartProduct(int productId, int qty)
+        {
+            var userId = userService.GetUserId();
+
+           // var cartItem = await _context.CartItems
+           //.FirstOrDefaultAsync(ci =>
+           //    ci.UserId == userId &&
+           //    ci.ProductId == productId);
+
+            var updatedCartProduct = await _context.CartItems
+                .Where(cp =>
+                    cp.UserId == userId)
+                .Include(cp =>
+                    cp.Product)
+                .FirstOrDefaultAsync();
+
+            updatedCartProduct.Quantity += qty;
+            _context.Entry(updatedCartProduct).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

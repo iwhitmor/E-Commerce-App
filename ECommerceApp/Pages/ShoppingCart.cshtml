@@ -1,0 +1,64 @@
+@page
+@model ECommerceApp.Pages.ShoppingCartModel
+@{
+    ViewData["Title"] = "ShoppingCart";
+}
+    <h4>My Shopping Cart</h4>
+
+<table class="table">
+    <thead>
+       <tr>
+           <th>
+               Name
+           </th>
+           <th>
+               Price
+           </th>
+           <th>
+               Category
+           </th>
+           <th>
+               Quantity
+           </th>
+       </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+        <tr>
+
+            <td>
+                @item.Product.Name
+            </td>
+            <td>
+               $@Html.DisplayFor(modelItem => item.Product.Price)
+            </td>
+            <td>
+                @item.Product.Category.Name
+            </td>
+            <td>
+                <form asp-page="ShoppingCart" method="post">
+                    <label for="quantity">Qty</label>
+                    <select class="form-control" form-control-sm" type="text" placeholder=".form-control-sm">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <button type="submit" class="btn btn-secondary">Update</button>
+                </form>
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(@item.Product.ImageUrl))
+                {
+                    <img src="@item.Product.ImageUrl" style="height:100px;width:100px;" />
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

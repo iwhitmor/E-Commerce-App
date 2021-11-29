@@ -11,7 +11,11 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ECommerceApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="https://ecommerce1.blob.core.windows.net/ecommerce/golf-ball-with-crossed-clubs_1503584.jpg" width="35" height="35" class="d-inline-block align-top" alt="">
+
+                    The Golf Club
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,6 +35,9 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="Store" asp- action="Index">All Products</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp- action="Index">My Account</a>
                             </li>
                             <li class="nav-item">
@@ -38,12 +45,12 @@
                                     <button type="submit" class="nav-link text-dark btn btn-link border-0">Log Out</button>
                                 </form>
                             </li>
-                            <button type="button" class="btn btn-secondary position-relative">
-                                    My Cart
+                            <a asp-page="ShoppingCart" class="btn btn-secondary active" role="button">
+                                My Cart
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                 <vc:cart-count />  
+                                    <vc:cart-count />
                                 </span>
-                            </button>
+                            </a>
                         }
                         else
                         {

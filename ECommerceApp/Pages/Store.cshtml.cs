@@ -4,18 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
 using ECommerceApp.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ECommerceApp.Pages
 {
-    public class ProductModel : PageModel
+    public class StoreModel : PageModel
+
     {
         private readonly IProductRepository productRepository;
         private readonly ICartRepository cartRepository;
 
-        public ProductModel(IProductRepository productRepository, ICartRepository cartRepository)
+        public StoreModel(IProductRepository productRepository, ICartRepository cartRepository)
         {
             this.productRepository = productRepository;
             this.cartRepository = cartRepository;
@@ -23,22 +23,22 @@ namespace ECommerceApp.Pages
 
         public Product Product { get; set; }
 
-        //public async Task<IActionResult> OnGetAsync(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    Product = await productRepository.GetById(id);
+            Product = await productRepository.GetById(id);
 
-        //    if (Product == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (Product == null)
+            {
+                return NotFound();
+            }
 
-        //    return Page();
-        //}
+            return Page();
+        }
 
         public async Task<IActionResult> OnPost(int? id)
         {
@@ -55,8 +55,10 @@ namespace ECommerceApp.Pages
         public IList<Product> Products { get; set; }
 
         public async Task OnGetAsync()
-        { 
+        {
             Products = await productRepository.GetAll();
         }
     }
+
 }
+

@@ -11,5 +11,9 @@ namespace ECommerceApp.Services
         Task AddToCart(int productId, int qty);
 
         Task<int> GetCartQuantity();
+
+        Task<List<CartItem>> ShoppingCart();
+
+        Task UpdatedCartProduct(int productId, int qty);
     }
 }
